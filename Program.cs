@@ -17,7 +17,12 @@ namespace DispatchMgt
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var host = CreateWebHostBuilder(args).
+                
+                UseUrls("http://localhost:" + Environment.GetEnvironmentVariable("PORT")).
+                Build();
+
+            host.Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
