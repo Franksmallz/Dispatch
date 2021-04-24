@@ -17,16 +17,15 @@ namespace DispatchMgt
     {
         public static void Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).
-                UseKestrel().
-                UseUrls("http://localhost:" + Environment.GetEnvironmentVariable("PORT")).
-                Build();
-
-            host.Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseKestrel(options =>
+                {
+                    options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
+                });
     }
 }
