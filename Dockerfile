@@ -8,4 +8,4 @@ COPY . ./
 
 RUN dotnet publish -c Release -o publish
 
-CMD ["dotnet","publish/DispatchM.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet DispatchM.dll

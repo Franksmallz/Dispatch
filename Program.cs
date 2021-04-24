@@ -18,7 +18,7 @@ namespace DispatchMgt
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).
-                
+                UseKestrel().
                 UseUrls("http://localhost:" + Environment.GetEnvironmentVariable("PORT")).
                 Build();
 
@@ -27,10 +27,7 @@ namespace DispatchMgt
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
                 WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseKestrel(options =>
-                {
-                    options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
-                });
+                .UseStartup<Startup>();
+  
     }
 }
