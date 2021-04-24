@@ -19,7 +19,7 @@ namespace DispatchMgt
         {
             var host = CreateWebHostBuilder(args).
                 UseKestrel().
-                UseUrls("http://0.0.0.0:" + Environment.GetEnvironmentVariable("PORT")).
+                UseUrls("http://localhost:" + Environment.GetEnvironmentVariable("PORT")).
                 Build();
 
             host.Run();
